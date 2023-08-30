@@ -11,7 +11,7 @@ from collections import defaultdict
 
 def uniform_cost_search(graph, inital_node, goal_test, is_tree, is_update):
 
-    # frontier = PriorityQueue('min', f)
+    # frontier = PriorityQueue('min')
     raise NotImplementedError
 
 print("=====")

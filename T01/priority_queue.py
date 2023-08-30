@@ -7,18 +7,18 @@ class PriorityQueue:
     returned first; if order is 'max', then it is the item with maximum f(x).
     Also supports dict-like lookup."""
 
-    def __init__(self, order='min', f=lambda x: x):
+    def __init__(self, order='min'):
         self.heap = []
         if order == 'min':
-            self.f = f
+            pass
         elif order == 'max':  # now item with max f(x)
-            self.f = lambda x: -f(x)  # will be popped first
+            raise NotImplementedError
         else:
             raise ValueError("Order must be either 'min' or 'max'.")
 
-    def append(self, item):
+    def append(self, item, val):
         """Insert item at its correct position."""
-        heapq.heappush(self.heap, (self.f(item), item))
+        heapq.heappush(self.heap, (val, item))
 
     def extend(self, items):
         """Insert each item in items at its correct position."""
@@ -29,7 +29,7 @@ class PriorityQueue:
         """Pop and return the item (with min or max f(x) value)
         depending on the order."""
         if self.heap:
-            return heapq.heappop(self.heap)[1]
+            return heapq.heappop(self.heap)
         else:
             raise Exception('Trying to pop from empty PriorityQueue.')
 
