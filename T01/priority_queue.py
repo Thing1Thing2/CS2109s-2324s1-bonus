@@ -6,7 +6,6 @@ class PriorityQueue:
     If order is 'min', the item with minimum f(x) is
     returned first; if order is 'max', then it is the item with maximum f(x).
     Also supports dict-like lookup."""
-
     def __init__(self, order='min'):
         self.heap = []
         if order == 'min':
@@ -18,13 +17,14 @@ class PriorityQueue:
 
     def append(self, item, val):
         """Insert item at its correct position."""
-        heapq.heappush(self.heap, (val, item))
+        heapq.heappush(self.heap, (item, val))
+        
 
     def extend(self, items):
         """Insert each item in items at its correct position."""
         for item in items:
-            self.append(item)
-
+            self.append(item[0], item[1])
+        
     def pop(self):
         """Pop and return the item (with min or max f(x) value)
         depending on the order."""
@@ -56,3 +56,6 @@ class PriorityQueue:
         except ValueError:
             raise KeyError(str(key) + " is not in the priority queue")
         heapq.heapify(self.heap)
+        
+    def print(self):
+        print(heapq.nsmallest(self.heap.__len__(), self.heap))
